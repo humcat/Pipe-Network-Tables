@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang='en' dir='ltr'>
+  <head>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href='static/stylesheets/master.css'>
+    <link rel='icon' href='static/images/icon.ico'>
+    <title>Internal Service Error</title>
+  </head>
+
+  <body>
+
+    <div>
+      <h1><a href="{{ url_for('index') }}">Pipe Network Tables</a></h1>
+    </div>
+
+    <a href="{{ url_for('index') }}">
+      <img class='error-image' src='static/images/error.png'>
+    </a>
+
+    <div>
+      <p class='error'>Chosen files were not valid.<br />Click above to try again.</p>
+    </div>
+
+  </body>
+
+</html>
