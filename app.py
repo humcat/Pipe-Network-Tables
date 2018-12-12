@@ -12,7 +12,7 @@ app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
-class design_upload(FlaskForm):
+class network_upload(FlaskForm):
     design_files = MultipleFileField('Select Pipe Design Files') 
     design_submit = SubmitField('Format Pipe Design Files')
 
@@ -24,7 +24,7 @@ class design_upload(FlaskForm):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    form = design_upload()
+    form = network_upload()
     if form.validate_on_submit(): 
 
         if form.design_submit.data:
@@ -71,4 +71,4 @@ def internal_error(error):
     return render_template('500.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=1000, debug=False)
+    app.run(host='0.0.0.0', port=1000, debug=True)

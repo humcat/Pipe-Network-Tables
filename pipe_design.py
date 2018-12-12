@@ -7,7 +7,7 @@ import openpyxl
 from pandas import ExcelWriter
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font
-from flask import Flask, send_file
+from flask import send_file
 
 def main(design_names, design_files):
 
@@ -58,6 +58,7 @@ def main(design_names, design_files):
     for series, df in dfs.items():
         df.to_excel(writer, sheet_name=series, startrow=3, startcol=1, index=False)
     writer.save()
+    output_file.seek(0)
 
     #Create cell border styles
     border_thin = cell_border('thin', 'thin', 'thin', 'thin')
