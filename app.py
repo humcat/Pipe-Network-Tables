@@ -31,7 +31,6 @@ def index():
         if form.design_submit.data:
             design_files = form.design_files.data
             design_names = [secure_filename(file.filename) for file in design_files]
-            print(design_names)
             pipe_design.main(design_names, design_files)     
 
         if form.velocity_submit.data:
