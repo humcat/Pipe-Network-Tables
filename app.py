@@ -6,6 +6,7 @@ import os
 import pipe_design
 import pipe_velocity
 import gutter_spread
+import wtforms.validators
 
 app = Flask(__name__)
 
@@ -13,10 +14,10 @@ SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
 class network_upload(FlaskForm):
-    design_files = MultipleFileField('Select Pipe Design Files') 
+    design_files = MultipleFileField('Select Pipe Design Files')
     design_submit = SubmitField('Format Pipe Design Files')
 
-    velocity_files = MultipleFileField('Select Pipe Velocity Files') 
+    velocity_files = MultipleFileField('Select Pipe Velocity Files')
     velocity_submit = SubmitField('Format Pipe Velocity Files')
 
     spread_files = MultipleFileField('Select Gutter Spread Files') 
@@ -30,6 +31,7 @@ def index():
         if form.design_submit.data:
             design_files = form.design_files.data
             design_names = [secure_filename(file.filename) for file in design_files]
+            print(design_names)
             pipe_design.main(design_names, design_files)     
 
         if form.velocity_submit.data:
@@ -42,7 +44,7 @@ def index():
             spread_names = [secure_filename(file.filename) for file in spread_files]
             gutter_spread.main(spread_names, spread_files)     
 
-    return render_template('index.html', form=form)    
+    return render_template('index.html', form=form)
 
 @app.route('/design_report')
 def design_report():
