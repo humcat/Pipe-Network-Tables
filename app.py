@@ -31,17 +31,20 @@ def index():
         if form.design_submit.data:
             design_files = form.design_files.data
             design_names = [secure_filename(file.filename) for file in design_files]
-            pipe_design.main(design_names, design_files)     
+            output_file = pipe_design.main(design_names, design_files)     
+            return output_file
 
         if form.velocity_submit.data:
             velocity_files = form.velocity_files.data
             velocity_names = [secure_filename(file.filename) for file in velocity_files]
-            pipe_velocity.main(velocity_names, velocity_files)     
+            output_file = pipe_velocity.main(velocity_names, velocity_files)     
+            return output_file
 
         if form.spread_submit.data:
             spread_files = form.spread_files.data
             spread_names = [secure_filename(file.filename) for file in spread_files]
-            gutter_spread.main(spread_names, spread_files)     
+            output_file = gutter_spread.main(spread_names, spread_files)     
+            return output_file
 
     return render_template('index.html', form=form)
 
